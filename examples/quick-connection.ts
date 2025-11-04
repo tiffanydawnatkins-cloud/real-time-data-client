@@ -50,6 +50,13 @@ const onConnect = (client: RealTimeDataClient): void => {
                 filters: "", // filters: `{"symbol":"eth/usd"}`,
             },
 
+            // equity_prices
+            {
+                topic: "equity_prices",
+                type: "*",
+                filters: "", // filters: `{"symbol":"AAPL"}`,
+            },
+
             // clob_market
             {
                 topic: "clob_market",
