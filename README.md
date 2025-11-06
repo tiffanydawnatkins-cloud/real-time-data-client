@@ -101,6 +101,7 @@ client.disconnect();
 | `rfq`                     | `quote_expired`    | -        | -                                                               | [`Quote`](#quote)                   |                                                             |
 | `crypto_prices`           | `update`           | -        | `{"symbol":string}`                                             | [`CryptoPrice`](#cryptoprice)       | [`CryptoPriceHistorical`](#initial-data-dump-on-connection) |
 | `crypto_prices_chainlink` | `update`           | -        | `{"symbol":string}`                                             | [`CryptoPrice`](#cryptoprice)       | [`CryptoPriceHistorical`](#initial-data-dump-on-connection) |
+| `equity_prices` | `update`           | -        | `{"symbol":string}`                                             | [`EquityPrice`](#equityprice)       | [`EquityPriceHistorical`](#initial-data-dump-on-connection) |
 | `clob_user`               | `order`            | ClobAuth | -                                                               | [`Order`](#order)                   |                                                             |
 | `clob_user`               | `trade`            | ClobAuth | -                                                               | [`Trade`](#trade-1)                 |                                                             |
 | `clob_market`             | `price_change`     | -        | `["100","200",...]` (filters are mandatory on this one)         | [`PriceChanges`](#pricechanges)     |                                                             |
@@ -245,14 +246,38 @@ client.subscribe({
 
 #### Filters
 
-- `{"symbol":"btcusdt"}`
-- `{"symbol":"ethusdt"}`
-- `{"symbol":"xrpusdt"}`
-- `{"symbol":"solusdt"}`
+- `{"symbol":"BTCUSDT"}`
+- `{"symbol":"ETHUSDT"}`
+- `{"symbol":"XRPUSDT"}`
+- `{"symbol":"SOLUSDT"}`
+- `{"symbol":"DOGEUSDT"}`
+
+### EquityPrice
+
+| Name        | Type   | Description                              |
+| ----------- | ------ | ---------------------------------------- |
+| `symbol`    | string | Symbol of the asset                      |
+| `timestamp` | number | Timestamp in milliseconds for the update |
+| `value`     | number | Value at the time of update              |
+
+#### Filters
+
+- `{"symbol":"AAPL"}`
+- `{"symbol":"TSLA"}`
+- `{"symbol":"MSFT"}`
+- `{"symbol":"GOOGL"}`
+- `{"symbol":"AMZN"}`
+- `{"symbol":"META"}`
+- `{"symbol":"NVDA"}`
+- `{"symbol":"NFLX"}`
+- `{"symbol":"PLTR"}`
+- `{"symbol":"OPEN"}`
+- `{"symbol":"RKLB"}`
+- `{"symbol":"ABNB"}`
 
 #### Initial data dump on connection
 
-When the connection is stablished, if a `filter` is used, the server will dump an initial snapshoot of recent data
+When the connection is stablished, if a `filter` is used, the server will dump an initial snapshoot of recent data. This applies to both CrytoPrice and EquityPrice.
 
 | Name   | Type   | Description                                                      |
 | ------ | ------ | ---------------------------------------------------------------- |
